@@ -148,7 +148,10 @@
     "name": "string",
     "instructions": "string",
     "prep_time": 0,
-    "cook_time": 0
+    "cook_time": 0,
+    "ingredients": [
+      1, 2 ,3
+    ]
   }
 
   ```
@@ -350,8 +353,6 @@
   
   ``` json
   {
-    "insertedId": 1,
-    "email_id": 1,
     "name": "string"
   }
 
@@ -367,8 +368,7 @@
 {
   "message": "Successfully added ingredient",
   "data": {
-    "id": 1,
-    "name": "tasty food"
+    "id": 1
   }
 }
 ```
