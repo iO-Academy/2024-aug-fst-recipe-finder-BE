@@ -44,7 +44,7 @@
 ```
 
 - **Error Response:**
-- **Code:** 400 SERVER ERROR
+- **Code:** 400 BAD REQUEST
 - **Content:** `{"message": "Invalid email", "data": {} }`
 
 - **Code:** 500 SERVER ERROR
@@ -66,6 +66,9 @@
 ```
 
 - **Error Response:**
+
+  - **Code:** 400 BAD REQUEST
+  - **Content:** `{"message": "Invalid email", "data": {} }`
 
   - **Code:** 500 SERVER ERROR
     **Content:** `{"message": "Unexpected error"}`
@@ -145,7 +148,7 @@
     "name": "string",
     "instructions": "string",
     "prep_time": 0,
-    "cook_time": 0,
+    "cook_time": 0
   }
 
   ```
@@ -347,10 +350,14 @@
   
   ``` json
   {
+    "insertedId": 1,
+    "email_id": 1,
     "name": "string"
   }
 
   ```
+
+  the inserted ID for the ingredient in the 'ingredients' table must be used in the 'recipe' table and 'recipes_ingredient' relational table.
 
 - **Success Response:**
   - **Code:** 201

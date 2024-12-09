@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 11.5.2-MariaDB-ubu2404)
 # Database: foodhub
-# Generation Time: 2024-12-09 15:12:22 +0000
+# Generation Time: 2024-12-09 15:49:27 +0000
 # ************************************************************
 
 
@@ -37,14 +37,14 @@ LOCK TABLES `ingredients` WRITE;
 
 INSERT INTO `ingredients` (`id`, `name`, `email_id`)
 VALUES
-	(1,'0',0),
-	(2,'0',0),
-	(3,'0',0),
-	(4,'0',0),
-	(5,'0',0),
-	(6,'0',0),
-	(7,'0',0),
-	(8,'0',0);
+	(1,'cheese',1),
+	(2,'chicken',1),
+	(3,'chocolate',1),
+	(4,'crisps',1),
+	(5,'cake',1),
+	(6,'cucumber',1),
+	(7,'camomile',1),
+	(8,'cilantro',1);
 
 /*!40000 ALTER TABLE `ingredients` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -105,26 +105,26 @@ VALUES
 UNLOCK TABLES;
 
 
-# Dump of table users
+# Dump of table user_id
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `user_id`;
 
-CREATE TABLE `users` (
+CREATE TABLE `user_id` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+LOCK TABLES `user_id` WRITE;
+/*!40000 ALTER TABLE `user_id` DISABLE KEYS */;
 
-INSERT INTO `users` (`id`, `email`)
+INSERT INTO `user_id` (`id`, `email`)
 VALUES
 	(1,'you@me.com'),
 	(2,'me@you.com');
 
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+/*!40000 ALTER TABLE `user_id` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
