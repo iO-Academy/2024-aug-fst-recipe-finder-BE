@@ -1,0 +1,32 @@
+{
+  "name": "2024-aug-fst-recipe-finder-be",
+  "version": "1.0.0",
+  "description": "project template repo",
+  "main": "main.ts",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/iO-Academy/2024-aug-fst-recipe-finder-BE.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iO-Academy/2024-aug-fst-recipe-finder-BE/issues"
+  },
+  "homepage": "https://github.com/iO-Academy/2024-aug-fst-recipe-finder-BE#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "node": "^22.12.0",
+    "promise-mysql": "^5.2.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "jest": "^29.7.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}

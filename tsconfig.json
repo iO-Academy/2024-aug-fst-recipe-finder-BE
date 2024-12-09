@@ -1,0 +1,38 @@
+{
+
+    "files": [
+    
+    "main.ts"
+    
+    ],
+    
+    "include": [
+    
+    "./src/**/*.ts"
+    
+    ],
+    
+    "compilerOptions": {
+    
+    "target": "ES6",
+    
+    "lib": ["ES2023", "DOM"],
+    
+    "checkJs": false,
+    
+    "module": "NodeNext"
+    },
+    
+    "scripts": {
+    
+    "build": "tsc --project tsconfig.json",
+    
+    "dev": "tsc --watch --project tsconfig.json",
+    
+    "test": "echo \"Error: no test specified\" && exit 1"
+    
+    },
+    
+    
+    
+    }
