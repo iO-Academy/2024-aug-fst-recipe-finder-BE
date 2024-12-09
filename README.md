@@ -208,7 +208,6 @@
     "id": 1,
     "name": "baps",
     "instructions": "how to make baps",
-    "duration": 3,
     "prep_time": 1,
     "cook_time": 2,
     "ingredients": [
