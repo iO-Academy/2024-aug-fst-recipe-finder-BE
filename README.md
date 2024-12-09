@@ -20,6 +20,14 @@
 
   `/users`
 
+    **Body Data**
+
+  ``` json
+  {
+    "email": "you@me.com"
+  }
+  ```
+
 ## get user
 
 - **Success Response:**
@@ -36,9 +44,11 @@
 ```
 
 - **Error Response:**
+- **Code:** 400 SERVER ERROR
+- **Content:** `{"message": "Invalid email", "data": {} }`
 
 - **Code:** 500 SERVER ERROR
-- **Content:** `{"message": "Unexpected error", "data": [] }`
+- **Content:** `{"message": "Unexpected error", "data": {} }`
 
 #### add user if not existing
 
@@ -89,13 +99,11 @@
     {
       "id": 1,
       "name": "baps",
-      "instructions": "how to make baps",
       "duration": 3
     },
     {
       "id": 2,
-      "name": "baps",
-      "instructions": "how to make baps",
+      "name": "buns",
       "duration": 3
     }
   ]
@@ -126,7 +134,21 @@
 
   **Example:**
 
-  `/users/1/recipes`
+  `/users/1/recipes` 
+
+  **Body Data**
+
+  Required
+
+  ``` json
+  {
+    "name": "string",
+    "instructions": "string",
+    "prep_time": 0,
+    "cook_time": 0,
+  }
+
+  ```
 
 - **Success Response:**
   - **Code:** 201
@@ -137,11 +159,6 @@
   "message": "Successfully created recipe",
   "data": {
     "recipeId": 1,
-    "name": "baps",
-    "instructions": "how to make baps",
-    "duration": 3,
-    "prep_time": 1,
-    "cook_time": 2
   }
 }
 ```
@@ -180,7 +197,7 @@
 
 ```json
 {
-  "message": "Successfully retrieved all recipes",
+  "message": "Successfully retrieved recipe",
   "data": {
     "id": 1,
     "name": "baps",
@@ -240,7 +257,6 @@
 {
   "message": "Successfully retrieved all ingredients",
   "data": {
-    "ingredients": [
       {
         "id": 1,
         "name": "tasty food"
@@ -253,7 +269,6 @@
         "id": 3,
         "name": "tastiest food"
       }
-    ]
   }
 }
 ```
@@ -270,7 +285,7 @@
 
 - **URL**
 
-  /users/:userId/ingredient/:id
+  /users/:userId/ingredient/:ingredientId
 
 - **Method:**
 
@@ -282,7 +297,7 @@
 
   **Example:**
 
-  `/users/1/ingredient/1
+  `/users/1/ingredient/1`
 
 - **Success Response:**
   - **Code:** 200
@@ -324,7 +339,18 @@
 
   **Example:**
 
-  `/users/1/ingredient
+  `/users/1/ingredient`
+
+  **Body Data**
+
+    Required
+  
+  ``` json
+  {
+    "name": "string"
+  }
+
+  ```
 
 - **Success Response:**
   - **Code:** 201
