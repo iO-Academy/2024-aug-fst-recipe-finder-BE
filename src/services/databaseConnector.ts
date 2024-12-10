@@ -1,14 +1,8 @@
 import mysql from "promise-mysql";
-import { host, user, password, database } from "../config/dbConfig";
+import { dbSettings } from "../../config/dbConfig";
 
 const getDatabase = async (): Promise<mysql.Connection> => {
-  const connection = await mysql.createConnection({
-    host: host,
-    user: user,
-    password: password,
-    database: database,
-  });
-  return connection;
+  return await mysql.createConnection(dbSettings);
 };
 
 export default getDatabase;
