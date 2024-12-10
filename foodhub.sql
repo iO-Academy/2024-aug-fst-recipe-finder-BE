@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 11.5.2-MariaDB-ubu2404)
 # Database: foodhub
-# Generation Time: 2024-12-09 15:12:22 +0000
+# Generation Time: 2024-12-09 16:25:19 +0000
 # ************************************************************
 
 
@@ -28,23 +28,23 @@ DROP TABLE IF EXISTS `ingredients`;
 CREATE TABLE `ingredients` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `email_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 LOCK TABLES `ingredients` WRITE;
 /*!40000 ALTER TABLE `ingredients` DISABLE KEYS */;
 
-INSERT INTO `ingredients` (`id`, `name`, `email_id`)
+INSERT INTO `ingredients` (`id`, `name`, `user_id`)
 VALUES
-	(1,'0',0),
-	(2,'0',0),
-	(3,'0',0),
-	(4,'0',0),
-	(5,'0',0),
-	(6,'0',0),
-	(7,'0',0),
-	(8,'0',0);
+	(1,'cheese',1),
+	(2,'chicken',1),
+	(3,'chocolate',1),
+	(4,'crisps',1),
+	(5,'cake',1),
+	(6,'cucumber',1),
+	(7,'camomile',1),
+	(8,'cilantro',1);
 
 /*!40000 ALTER TABLE `ingredients` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -57,7 +57,7 @@ DROP TABLE IF EXISTS `recipes`;
 
 CREATE TABLE `recipes` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `email_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `instructions` text NOT NULL,
   `prep_time` int(11) NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE `recipes` (
 LOCK TABLES `recipes` WRITE;
 /*!40000 ALTER TABLE `recipes` DISABLE KEYS */;
 
-INSERT INTO `recipes` (`id`, `email_id`, `name`, `instructions`, `prep_time`, `cook_time`)
+INSERT INTO `recipes` (`id`, `user_id`, `name`, `instructions`, `prep_time`, `cook_time`)
 VALUES
 	(1,1,'baps','how to make baps',1,2),
 	(2,1,'crisp sandwich','how to make crips sandwich',1,2),

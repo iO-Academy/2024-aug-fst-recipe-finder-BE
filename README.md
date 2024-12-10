@@ -44,11 +44,11 @@
 ```
 
 - **Error Response:**
-- **Code:** 400 SERVER ERROR
-- **Content:** `{"message": "Invalid email", "data": {} }`
+- **Code:** 400 BAD REQUEST
+- **Content:** `{"message": "Invalid email"}`
 
 - **Code:** 500 SERVER ERROR
-- **Content:** `{"message": "Unexpected error", "data": {} }`
+- **Content:** `{"message": "Unexpected error"}`
 
 #### add user if not existing
 
@@ -66,6 +66,9 @@
 ```
 
 - **Error Response:**
+
+  - **Code:** 400 BAD REQUEST
+  - **Content:** `{"message": "Invalid email"}`
 
   - **Code:** 500 SERVER ERROR
     **Content:** `{"message": "Unexpected error"}`
@@ -146,6 +149,9 @@
     "instructions": "string",
     "prep_time": 0,
     "cook_time": 0,
+    "ingredients": [
+      1, 2 ,3
+    ]
   }
 
   ```
@@ -166,12 +172,12 @@
 - **Error Response:**
 
   - **Code:** 400 BAD REQUEST
-    **Content:** `{"message": "Invalid user id", "data": {} }`
+    **Content:** `{"message": "Invalid user id"}`
   - **Code:** 400 BAD REQUEST
-    **Content:** `{"message": "Invalid data", "data": {} }`
+    **Content:** `{"message": "Invalid data"}`
 
   - **Code:** 500 SERVER ERROR
-    **Content:** `{"message": "Unexpected error", "data": {} }`
+    **Content:** `{"message": "Unexpected error"}`
 
 ## Return recipe by recipe id - story-4
 
@@ -202,7 +208,6 @@
     "id": 1,
     "name": "baps",
     "instructions": "how to make baps",
-    "duration": 3,
     "prep_time": 1,
     "cook_time": 2,
     "ingredients": [
@@ -226,10 +231,10 @@
 - **Error Response:**
 
   - **Code:** 400 BAD REQUEST
-    **Content:** `{"message": "Invalid recipe id", "data": {} }`
+    **Content:** `{"message": "Invalid recipe id"}`
 
   - **Code:** 500 SERVER ERROR
-    **Content:** `{"message": "Unexpected error", "data": {} }`
+    **Content:** `{"message": "Unexpected error"}`
 
 ## Return all ingredients - story-4
 
@@ -276,10 +281,10 @@
 - **Error Response:**
 
   - **Code:** 400 BAD REQUEST
-    **Content:** `{"message": "Invalid user id", "data": {} }`
+    **Content:** `{"message": "Invalid user id"}`
 
   - **Code:** 500 SERVER ERROR
-    **Content:** `{"message": "Unexpected error", "data": {} }`
+    **Content:** `{"message": "Unexpected error"}`
 
 ## Return single ingredient - story-4
 
@@ -316,12 +321,12 @@
 - **Error Response:**
 
   - **Code:** 400 BAD REQUEST
-    **Content:** `{"message": "Invalid ingredient id", "data": {} }`
+    **Content:** `{"message": "Invalid ingredient id"}`
   - **Code:** 400 BAD REQUEST
-    **Content:** `{"message": "Invalid user id", "data": {} }`
+    **Content:** `{"message": "Invalid user id"}`
 
   - **Code:** 500 SERVER ERROR
-    **Content:** `{"message": "Unexpected error", "data": {} }`
+    **Content:** `{"message": "Unexpected error"}`
 
 ## Add ingredient - story-4
 
@@ -351,7 +356,6 @@
   }
 
   ```
-
 - **Success Response:**
   - **Code:** 201
   - **Content:**
@@ -360,8 +364,7 @@
 {
   "message": "Successfully added ingredient",
   "data": {
-    "id": 1,
-    "name": "tasty food"
+    "id": 1
   }
 }
 ```
@@ -369,9 +372,9 @@
 - **Error Response:**
 
   - **Code:** 400 BAD REQUEST
-    **Content:** `{"message": "Invalid data", "data": {} }`
+    **Content:** `{"message": "Invalid data"}`
   - **Code:** 400 BAD REQUEST
-    **Content:** `{"message": "Invalid user id", "data": {} }`
+    **Content:** `{"message": "Invalid user id"}`
 
   - **Code:** 500 SERVER ERROR
-    **Content:** `{"message": "Unexpected error", "data": {} }`
+    **Content:** `{"message": "Unexpected error"}`
