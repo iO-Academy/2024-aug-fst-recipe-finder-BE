@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import getDatabase from "../services/databaseConnector";
-import { isEmail } from "../Services/validators";
+import { isEmail } from "../services/validators";
 
 const getUser = async (req: Request, res: Response) => {
   const db = await getDatabase();
