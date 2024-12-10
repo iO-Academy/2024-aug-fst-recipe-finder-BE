@@ -356,7 +356,6 @@
   }
 
   ```
-
 - **Success Response:**
   - **Code:** 201
   - **Content:**
