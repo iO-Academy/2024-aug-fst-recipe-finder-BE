@@ -357,8 +357,6 @@
 
   ```
 
-  the inserted ID for the ingredient in the 'ingredients' table must be used in the 'recipe' table and 'recipes_ingredient' relational table.
-
 - **Success Response:**
   - **Code:** 201
   - **Content:**
