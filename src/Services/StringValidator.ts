@@ -1,13 +1,9 @@
-import { error } from "console";
-import exp from "constants";
-
 function isString(input) {
-    if (typeof input ===  'string'){
-        return input
-    } else {
-        return Error ('not a string')
-    }
-
+  if (typeof input === "string") {
+    return input;
+  } else {
+    return Error("not a string");
+  }
 }
 
 function validateLength(
@@ -24,4 +20,4 @@ function validateLength(
   }
 }
 
-export 
+module.exports = { isString, validateLength };
