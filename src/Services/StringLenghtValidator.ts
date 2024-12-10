@@ -1,11 +1,3 @@
-function isString(input) {
-  if (typeof input === "string") {
-    return input;
-  } else {
-    return Error("not a string");
-  }
-}
-
 function validateLength(
   string: string,
   maxLength: number,
@@ -20,4 +12,4 @@ function validateLength(
   }
 }
 
-module.exports = { isString, validateLength };
+module.exports = { validateLength };
