@@ -13,5 +13,18 @@ app.get ('/', (req, res) => {
     res.send("Connection successful :D")
 })
 
-app.listen(port);
 
+
+const dbDetails = {
+    host: "localhost",
+    user: "root",
+    password: "password",
+    database: "foodhub",
+}
+app.get("/all", async (req, res) => {
+const db = await mysql.createConnection(dbDetails);
+const recipes = await db.query('SELECT * FROM `recipes`');
+res.json(recipes);
+});
+
+app.listen(port);
