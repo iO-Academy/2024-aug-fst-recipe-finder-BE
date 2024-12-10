@@ -9,8 +9,8 @@
     "include": [
     
     "./src/**/*.ts"
-, "src/Services/EmailValidator.js"    
-, "src/Services/IsStringValidator.js"    ],
+, "src/Services/EmailValidator.ts"    
+, "src/Services/IsStringValidator.ts"    ],
     
     "compilerOptions": {
     
