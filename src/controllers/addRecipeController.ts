@@ -19,7 +19,13 @@ async function addRecipe(req: Request, res: Response) {
         if(await userIdExists(db, userId)) {
             
             await db.query("INSERT INTO `recipes` (user_id, name, instructions, prep_time, cook_time) VALUE (?, ?, ?, ?, ?)",
-            [userId, req.body.name, req.body.instructions, req.body.prep_time, req.body.cook_time]);
+            [
+                userId,
+                req.body.name,
+                req.body.instructions,
+                req.body.prep_time,
+                req.body.cook_time
+            ]);
 
             // Add data^^^ validation - error code 400, message: "invalid data"
             
