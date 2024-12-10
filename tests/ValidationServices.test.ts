@@ -40,3 +40,15 @@ test('email has not-allowed special characters', () => {
 test('string is a correct length', () => {
     expect(stringLengthIsValid('heeellloooooo', 1, 255)).toBe(true);
 })
+
+test('string is under the minimum length is set to no characters', () => {
+    expect(stringLengthIsValid('', 1, 255)).toBe(false);
+})
+
+test('string is under over maximum length, is set to 11 characters', () => {
+    expect(stringLengthIsValid('loooooooool', 1, 10)).toBe(false);
+})
+
+test('string is under over maximum length, is set to 11 characters', () => {
+    expect(stringLengthIsValid('loooooooool', 1, 10)).toBe(false);
+})
