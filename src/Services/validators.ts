@@ -11,9 +11,8 @@ export function stringLengthIsValid(
 }
 
 export function isEmail(email: string): boolean {
-  if (stringLengthIsValid(email, 1, 255)) {
-    //change round
-    if (typeof email === "string") {
+  if (typeof email === "string") {
+    if (stringLengthIsValid(email, 1, 255)) {
       const regexEmail =
         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
       return regexEmail.test(email);

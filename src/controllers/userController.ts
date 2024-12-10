@@ -1,11 +1,21 @@
 import { Request, Response } from "express";
 import getDatabase from "../services/databaseConnector";
+import { isEmail } from "../Services/validators";
 
 const getUser = async (req: Request, res: Response) => {
   const db = await getDatabase();
 
   try {
-    const email = req.body.email;
+    let email;
+    if (isEmail(req.body.email)) {
+      email = req.body.email;
+    } else {
+      res.status(400).json({
+        message: "Invalid email",
+      });
+      return;
+    }
+
     const existingEmailId = await db.query(
       "SELECT `id` FROM `users` WHERE `email` = ?",
       [email]
