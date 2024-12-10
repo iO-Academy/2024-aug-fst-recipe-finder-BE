@@ -1,4 +1,4 @@
-function emailValidator(email: string) {
+function emailValidator(email) {
     const regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
     if(regexEmail.test(email)) {
         return true
@@ -7,4 +7,4 @@ function emailValidator(email: string) {
     }
 }
 
-module.exports = {emailValidator}
+module.exports = { emailValidator };
