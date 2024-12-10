@@ -1,4 +1,4 @@
-function validateLength(
+export function validateLength(
   string: string,
   maxLength: number,
   minLength: number
