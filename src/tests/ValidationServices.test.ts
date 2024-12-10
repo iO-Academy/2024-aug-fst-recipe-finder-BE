@@ -21,6 +21,11 @@ test('email has incorrect characters', () => {
     expect(email.emailValidator('you@@me.com')).toBe(false);
 })
 
+test('email is incorrect type', () => {
+    expect(email.emailValidator(1)).toBe(false);
+})
+
+
 test('string is a correct length', () => {
     expect(length.validateLength('heeellloooooo')).toBe(true);
 })
