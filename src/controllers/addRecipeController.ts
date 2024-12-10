@@ -11,6 +11,11 @@ async function addRecipe(req: Request, res: Response) {
             return userIdExists.length > 0 ? true : false
         }
 
+        async function ingredientIdExists (db, id) {
+            const ingredientidExists = await db.query("SELECT 1 FROM `ingredients` WHERE `id` = ? LIMIT 1;", [ id ])
+            return ingredientidExists.length > 0 ? true : false
+        }
+
         if(await userIdExists(db, userId)) {
             
             await db.query("INSERT INTO `recipes` (user_id, name, instructions, prep_time, cook_time) VALUE (?, ?, ?, ?, ?)",
@@ -23,9 +28,16 @@ async function addRecipe(req: Request, res: Response) {
             );
 
             let inputs = [];
-            req.body.ingredients.forEach(ingredient => {
-                inputs.push([newRecipeId[0].id, ingredient])
-            });
+            for(let ingredient of req.body.ingredients) {
+                if(await ingredientIdExists(db, ingredient)) {
+                    inputs.push([newRecipeId[0].id, ingredient])
+                } else {
+                    res.status(400).json({
+                        message: "invalid data - ingredient not present"
+                    });
+                    return;
+                }
+            };
 
             await db.query("INSERT INTO `recipes_ingredient` (recipe_id, ingredient_id) VALUES ?", [inputs]);
 
