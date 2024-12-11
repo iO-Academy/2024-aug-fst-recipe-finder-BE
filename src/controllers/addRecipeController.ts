@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import getDatabase from "../services/databaseConnector";
+import getDatabase from "../Services/databaseConnector";
 import {
   ingredientIdExists,
   numberLengthIsValid,
   stringLengthIsValid,
   userIdExists,
-} from "../services/validators";
+} from "../Services/validators";
 import { Connection } from "promise-mysql";
 
 export async function addRecipe(req: Request, res: Response) {
