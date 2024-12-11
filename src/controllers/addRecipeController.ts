@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
 import getDatabase from "../services/databaseConnector";
 import { ingredientIdExists, userIdExists } from "../services/validators";
+import { Connection } from "promise-mysql";
 
 export async function addRecipe(req: Request, res: Response) {
     try {
-        const db = await getDatabase()
-        const userId = req.params.userId
+        const db: Connection = await getDatabase()
+        const userId: number = Number(req.params.userId)
 
         if(await userIdExists(db, userId)) {
             
@@ -20,7 +21,7 @@ export async function addRecipe(req: Request, res: Response) {
 
             // Add data^^^ validation - error code 400, message: "invalid data"
             
-            const newRecipeId = await db.query(
+            const newRecipeId: [{id: number}] = await db.query(
                 "SELECT `id` FROM `recipes` ORDER BY `id` DESC LIMIT 1"
             );
 

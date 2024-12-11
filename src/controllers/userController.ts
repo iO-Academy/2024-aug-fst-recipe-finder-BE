@@ -5,7 +5,7 @@ import { isEmail } from "../services/validators";
 export async function getUser (req: Request, res: Response) {
   try {
     const db = await getDatabase();
-    let email;
+    let email: string;
     if (isEmail(req.body.email)) {
       email = req.body.email;
     } else {
@@ -15,7 +15,7 @@ export async function getUser (req: Request, res: Response) {
       return;
     }
 
-    const existingEmailId = await db.query(
+    const existingEmailId: [{id: number}] = await db.query(
       "SELECT `id` FROM `users` WHERE `email` = ?",
       [email]
     );
@@ -28,7 +28,7 @@ export async function getUser (req: Request, res: Response) {
       });
     } else {
       await db.query("INSERT INTO `users` (email) VALUE (?)", [email]);
-      const newEmailId = await db.query(
+      const newEmailId: [{id: number}] = await db.query(
         "SELECT `id` FROM `users` ORDER BY `id` DESC LIMIT 1"
       );
       res.json({

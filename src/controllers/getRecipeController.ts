@@ -1,14 +1,15 @@
 import { Request, Response } from "express";
 import getDatabase from "../services/databaseConnector";
-import { ingredientIdExists, userIdExists } from "../services/validators";
+import { userIdExists } from "../services/validators";
+import { Connection } from "promise-mysql";
 
-export async function getAllUserRecipes(req: Request, res: Response) {
+export async function getAllUserRecipes(req: Request, res: Response): Promise<void> {
   try {
-    const db = await getDatabase();
-    const userId = req.params.userId;
+    const db: Connection = await getDatabase();
+    const userId: number = Number(req.params.userId);
 
-    if (userIdExists(db, userId)) {
-      const recipes = await db.query(
+    if (await userIdExists(db, userId)) {
+      const recipes: [{id: number, name: string, duration: number}] = await db.query(
         "SELECT `id`, `name`, (`prep_time` + `cook_time`) AS 'duration' FROM `recipes` WHERE `user_id` = ?",
         [userId]
       );
@@ -19,11 +20,13 @@ export async function getAllUserRecipes(req: Request, res: Response) {
     } else {
       res.status(400).json({
         message: "Invalid user id",
+        data: []
       });
     }
   } catch {
     res.status(500).json({
       message: "Unexpected error",
+      data: []
     });
   }
 }

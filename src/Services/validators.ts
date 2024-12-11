@@ -1,3 +1,5 @@
+import { Connection } from "promise-mysql";
+
 export function stringLengthIsValid(
   string: string,
   minLength: number,
@@ -21,12 +23,12 @@ export function isEmail(email: string): boolean {
   return false;
 }
 
-export async function userIdExists (db, id) {
+export async function userIdExists (db: Connection, id: number): Promise<boolean> {
   const userIdExists = await db.query("SELECT 1 FROM `users` WHERE `id` = ? LIMIT 1;", [ id ])
   return userIdExists.length > 0 ? true : false
 }
 
-export async function ingredientIdExists (db, id) {
+export async function ingredientIdExists (db: Connection, id: number): Promise<boolean> {
   const ingredientidExists = await db.query("SELECT 1 FROM `ingredients` WHERE `id` = ? LIMIT 1;", [ id ])
   return ingredientidExists.length > 0 ? true : false
 }
