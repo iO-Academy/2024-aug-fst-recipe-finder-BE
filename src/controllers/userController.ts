@@ -35,7 +35,7 @@ const getUser = async (req: Request, res: Response) => {
       res.status(201).json({
         message: "Successfully created user",
         data: {
-          userId: newEmailId[0].id,
+          userId: newEmailId,
         },
       });
     }
