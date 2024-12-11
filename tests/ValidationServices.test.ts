@@ -75,11 +75,11 @@ describe("NumberLengthIsvalid Tests", () => {
     expect(numberLengthIsValid(12345678910, 1, 255)).toBe(true);
   });
 
-  test("string is under the minimum length is set to no characters", () => {
+  test("number under the minimum length is fails", () => {
     expect(numberLengthIsValid(1, 2, 255)).toBe(false);
   });
 
-  test("string is over maximum length, is set to 11 characters", () => {
+  test("number is over maximum length, is set to 11 characters", () => {
     expect(numberLengthIsValid(12345678910, 1, 10)).toBe(false);
   });
 });
