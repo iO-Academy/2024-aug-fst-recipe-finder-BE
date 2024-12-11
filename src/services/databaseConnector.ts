@@ -1,8 +1,8 @@
 import mysql from "promise-mysql";
-import { dbSettings } from "../../config/dbConfig";
+import { settings } from "../../config"
 
 const getDatabase = async (): Promise<mysql.Connection> => {
-  return await mysql.createConnection(dbSettings);
+  return await mysql.createConnection( settings.db );
 };
 
 export default getDatabase;
