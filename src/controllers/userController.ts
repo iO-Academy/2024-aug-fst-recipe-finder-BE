@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import getDatabase from "../services/databaseConnector";
-import { isEmail } from "../services/validators";
+import getDatabase from "../Services/databaseConnector";
+import { isEmail } from "../Services/validators";
 
 export async function getUser (req: Request, res: Response) {
   try {
@@ -20,21 +20,21 @@ export async function getUser (req: Request, res: Response) {
       [email]
     );
     if (existingEmailId.length > 0) {
-      res.json({
-        message: "successfully retrieved user",
+      res.status(200).json({
+        message: "Successfully retrieved user",
         data: {
           userId: existingEmailId[0].id,
         },
       });
     } else {
-      await db.query("INSERT INTO `users` (email) VALUE (?)", [email]);
-      const newEmailId: [{id: number}] = await db.query(
-        "SELECT `id` FROM `users` ORDER BY `id` DESC LIMIT 1"
-      );
-      res.json({
-        message: "successfully added user",
+
+      const results = await db.query("INSERT INTO `users` SET ?", { email: email });
+      const newEmailId = results.insertId; 
+
+      res.status(201).json({
+        message: "Successfully created user",
         data: {
-          userId: newEmailId[0].id,
+          userId: newEmailId,
         },
       });
     }
