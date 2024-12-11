@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import getDatabase from "../services/databaseConnector";
-import { userIdExists } from "../services/validators";
+import getDatabase from "../Services/databaseConnector";
+import { userIdExists } from "../Services/validators";
 import { Connection } from "promise-mysql";
 
 export async function getAllUserRecipes(req: Request, res: Response): Promise<void> {

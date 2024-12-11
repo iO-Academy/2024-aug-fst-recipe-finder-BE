@@ -1,9 +1,9 @@
 import express from 'express';
 import cors from 'cors';
-import { getUser } from './src/controllers/userController';
-import { addRecipe } from './src/controllers/addRecipeController';
-import { getAllUserRecipes } from './src/controllers/getAllUserRecipesController';
-import { getRecipeById } from './src/controllers/getRecipeByIdController';
+import { getUser } from './src/Controllers/userController';
+import { addRecipe } from './src/Controllers/addRecipeController';
+import { getAllUserRecipes } from './src/Controllers/getAllUserRecipesController';
+import { getRecipeById } from './src/Controllers/getRecipeByIdController';
 
 const app = express();
 const port = 3002;

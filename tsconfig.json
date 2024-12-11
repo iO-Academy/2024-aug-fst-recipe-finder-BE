@@ -4,8 +4,8 @@
     ],
     "include": [
         "./src/**/*.ts",
-        "src/services/EmailValidator.ts",
-        "src/services/IsStringValidator.ts"
+        "src/Services/EmailValidator.ts",
+        "src/Services/IsStringValidator.ts"
     ],
     "compilerOptions": {
         "target": "ES6",
