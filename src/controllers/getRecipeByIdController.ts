@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import getDatabase from "../Services/databaseConnector";
-import { userIdExists, recipeIdExists } from "../Services/validators";
+import { userIdExists, recipeIdExists, isIdValid } from "../Services/validators";
 import { Connection } from "promise-mysql";
 
 interface Ingredient {id: number, name: string}
@@ -10,7 +10,7 @@ interface Recipe {
   instructions: string,
   prep_time: number,
   cook_time: number,
-  ingredients: [Ingredient]
+  ingredients: Ingredient[]
 }
 
 export async function getRecipeById(
@@ -21,6 +21,20 @@ export async function getRecipeById(
     const db: Connection = await getDatabase();
     const userId: number = Number(req.params.userId);
     const recipeId: number = Number(req.params.recipeId);
+
+    if(!isIdValid(userId)) {
+      res.status(400).json({
+        message: "Invalid id",
+      });
+      return
+    }
+
+    if(!isIdValid(recipeId)) {
+      res.status(400).json({
+        message: "Invalid id",
+      });
+      return
+    }
 
     if (
       (await userIdExists(db, userId)) &&
@@ -35,9 +49,9 @@ export async function getRecipeById(
       const ingredients: [Ingredient] = await db.query(`
         SELECT ingredients.id, ingredients.name
         FROM ingredients
-        JOIN recipes_ingredient
-        ON ingredients.id = recipes_ingredient.ingredient_id
-        WHERE recipes_ingredient.recipe_id = 1;
+        JOIN recipes_ingredients
+        ON ingredients.id = recipes_ingredients.ingredient_id
+        WHERE recipes_ingredients.recipe_id = 1;
       `);
       recipe.ingredients = ingredients
 

@@ -78,22 +78,22 @@ VALUES
 UNLOCK TABLES;
 
 
-# Dump of table recipes_ingredient
+# Dump of table recipes_ingredients
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `recipes_ingredient`;
+DROP TABLE IF EXISTS `recipes_ingredients`;
 
-CREATE TABLE `recipes_ingredient` (
+CREATE TABLE `recipes_ingredients` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `recipe_id` int(11) NOT NULL,
   `ingredient_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
-LOCK TABLES `recipes_ingredient` WRITE;
-/*!40000 ALTER TABLE `recipes_ingredient` DISABLE KEYS */;
+LOCK TABLES `recipes_ingredients` WRITE;
+/*!40000 ALTER TABLE `recipes_ingredients` DISABLE KEYS */;
 
-INSERT INTO `recipes_ingredient` (`id`, `recipe_id`, `ingredient_id`)
+INSERT INTO `recipes_ingredients` (`id`, `recipe_id`, `ingredient_id`)
 VALUES
 	(1,1,1),
 	(2,1,7),
@@ -101,7 +101,7 @@ VALUES
 	(4,3,3),
 	(5,3,8);
 
-/*!40000 ALTER TABLE `recipes_ingredient` ENABLE KEYS */;
+/*!40000 ALTER TABLE `recipes_ingredients` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
