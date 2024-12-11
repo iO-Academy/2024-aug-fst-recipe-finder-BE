@@ -1,5 +1,5 @@
 import {describe, expect, test} from '@jest/globals';
-import {stringLengthIsValid, isEmail} from '../src/Services/validators'
+import {stringLengthIsValid, isEmail} from '../src/services/validators'
 
 test('email is valid', () => {
     expect(isEmail('you@me.com')).toBe(true);
@@ -41,10 +41,34 @@ test('string is a correct length', () => {
     expect(stringLengthIsValid('heeellloooooo', 1, 255)).toBe(true);
 })
 
+test('string is exactly the minimum length', () => {
+    expect(stringLengthIsValid('h', 1, 255)).toBe(true);
+})
+
+test('string is exactly the maximum length', () => {
+    expect(stringLengthIsValid('help', 1, 4)).toBe(true);
+})
+
 test('string is under the minimum length is set to no characters', () => {
     expect(stringLengthIsValid('', 1, 255)).toBe(false);
 })
 
-test('string is over maximum length, is set to 11 characters', () => {
+test('string is one under the minimum length', () => {
+    expect(stringLengthIsValid('1', 2, 255)).toBe(false);
+})
+
+test('string is one over the minimum length', () => {
+    expect(stringLengthIsValid('hi', 1, 255)).toBe(true);
+})
+
+test('string is one under the maximum length', () => {
+    expect(stringLengthIsValid('hee', 1, 4)).toBe(true);
+})
+
+test('string is one over the maximum length', () => {
+    expect(stringLengthIsValid('helpme', 1, 4)).toBe(false);
+})
+
+test('string is one over maximum length, is set to 11 characters', () => {
     expect(stringLengthIsValid('loooooooool', 1, 10)).toBe(false);
 })
