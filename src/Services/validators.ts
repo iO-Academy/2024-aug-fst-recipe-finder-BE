@@ -20,3 +20,13 @@ export function isEmail(email: string): boolean {
   }
   return false;
 }
+
+export async function userIdExists (db, id) {
+  const userIdExists = await db.query("SELECT 1 FROM `users` WHERE `id` = ? LIMIT 1;", [ id ])
+  return userIdExists.length > 0 ? true : false
+}
+
+export async function ingredientIdExists (db, id) {
+  const ingredientidExists = await db.query("SELECT 1 FROM `ingredients` WHERE `id` = ? LIMIT 1;", [ id ])
+  return ingredientidExists.length > 0 ? true : false
+}

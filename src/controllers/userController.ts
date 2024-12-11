@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import getDatabase from "../services/databaseConnector";
 import { isEmail } from "../services/validators";
 
-const getUser = async (req: Request, res: Response) => {
+export async function getUser (req: Request, res: Response) {
   try {
     const db = await getDatabase();
     let email;
@@ -44,5 +44,3 @@ const getUser = async (req: Request, res: Response) => {
     });
   }
 };
-
-export default getUser;

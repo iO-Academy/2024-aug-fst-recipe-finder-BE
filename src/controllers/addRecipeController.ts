@@ -1,20 +1,11 @@
 import { Request, Response } from "express";
 import getDatabase from "../services/databaseConnector";
+import { ingredientIdExists, userIdExists } from "../services/validators";
 
-async function addRecipe(req: Request, res: Response) {
+export async function addRecipe(req: Request, res: Response) {
     try {
         const db = await getDatabase()
         const userId = req.params.userId
-
-        async function userIdExists (db, id) {
-            const userIdExists = await db.query("SELECT 1 FROM `users` WHERE `id` = ? LIMIT 1;", [ id ])
-            return userIdExists.length > 0 ? true : false
-        }
-
-        async function ingredientIdExists (db, id) {
-            const ingredientidExists = await db.query("SELECT 1 FROM `ingredients` WHERE `id` = ? LIMIT 1;", [ id ])
-            return ingredientidExists.length > 0 ? true : false
-        }
 
         if(await userIdExists(db, userId)) {
             
@@ -64,5 +55,3 @@ async function addRecipe(req: Request, res: Response) {
         });
     }
 }
-
-export default addRecipe
