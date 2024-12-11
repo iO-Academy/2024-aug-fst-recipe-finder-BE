@@ -12,6 +12,14 @@ export function stringLengthIsValid(
   } else return true;
 }
 
+export function numberLengthIsValid(
+  number: number,
+  minLength: number,
+  maxLength: number
+): boolean {
+  return number.toString().length < minLength || number.toString().length > maxLength ? false : true 
+}
+
 export function isEmail(email: string): boolean {
   if (typeof email === "string") {
     if (stringLengthIsValid(email, 1, 255)) {
