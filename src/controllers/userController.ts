@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import getDatabase from "../Services/databaseConnector";
-import { isEmail } from "../Services/validators";
+import getDatabase from "../services/databaseConnector";
+import { isEmail } from "../services/validators";
 
 export async function getUser (req: Request, res: Response) {
   try {

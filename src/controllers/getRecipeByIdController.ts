@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import getDatabase from "../Services/databaseConnector";
-import { userIdExists, recipeIdExists } from "../Services/validators";
+import getDatabase from "../services/databaseConnector";
+import { userIdExists, recipeIdExists } from "../services/validators";
 import { Connection } from "promise-mysql";
 
 interface Ingredient {id: number, name: string}

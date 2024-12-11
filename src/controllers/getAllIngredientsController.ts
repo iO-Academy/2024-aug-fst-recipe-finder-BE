@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import getDatabase from "../Services/databaseConnector";
-import { userIdExists } from "../Services/validators";
+import getDatabase from "../services/databaseConnector";
+import { userIdExists } from "../services/validators";
 import { Connection } from "promise-mysql";
 
 export async function getAllIngredients(req: Request, res: Response): Promise<void> {
@@ -9,7 +9,7 @@ export async function getAllIngredients(req: Request, res: Response): Promise<vo
     const userId: number = Number(req.params.userId);
 
     if (await userIdExists(db, userId)) {
-      const ingredients: [{id: number, name: string, duration: number}] = await db.query(
+      const ingredients: [{id: number, name: string}] = await db.query(
         "SELECT `id`, `name` FROM `ingredients` WHERE `user_id` = ?",
         [userId]
       );
