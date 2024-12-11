@@ -21,19 +21,19 @@ const getUser = async (req: Request, res: Response) => {
       [email]
     );
     if (existingEmailId.length > 0) {
-      res.json({
-        message: "successfully retrieved user",
+      res.status(200).json({
+        message: "Successfully retrieved user",
         data: {
           userId: existingEmailId[0].id,
         },
       });
     } else {
-      await db.query("INSERT INTO `users` (email) VALUE (?)", [email]);
-      const newEmailId = await db.query(
-        "SELECT `id` FROM `users` ORDER BY `id` DESC LIMIT 1"
-      );
-      res.json({
-        message: "successfully added user",
+
+      const results = await db.query("INSERT INTO `users` SET ?", { email: email });
+      const newEmailId = results.insertId; 
+
+      res.status(201).json({
+        message: "Successfully created user",
         data: {
           userId: newEmailId[0].id,
         },
