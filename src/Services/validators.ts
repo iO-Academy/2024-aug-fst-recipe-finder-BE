@@ -10,6 +10,18 @@ export function stringLengthIsValid(
   } else return true;
 }
 
+export function numberLengthIsValid(
+  number: number,
+  minLength: number,
+  maxLength: number
+): boolean {
+  let length = number.toString.length;
+
+  if (length < minLength || length > maxLength) {
+    return false;
+  } else return true;
+}
+
 export function isEmail(email: string): boolean {
   if (typeof email === "string") {
     if (stringLengthIsValid(email, 1, 255)) {

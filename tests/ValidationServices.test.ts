@@ -1,5 +1,5 @@
 import {describe, expect, test} from '@jest/globals';
-import {stringLengthIsValid, isEmail} from '../src/Services/validators'
+import {stringLengthIsValid, isEmail, numberLengthIsValid} from '../src/services/validators'
 
 test('email is valid', () => {
     expect(isEmail('you@me.com')).toBe(true);
@@ -48,3 +48,20 @@ test('string is under the minimum length is set to no characters', () => {
 test('string is over maximum length, is set to 11 characters', () => {
     expect(stringLengthIsValid('loooooooool', 1, 10)).toBe(false);
 })
+
+test('number is correct length, is set to 11 didgits', () => {
+    expect(numberLengthIsValid(9, 0, 11)).toBe(true);
+})
+
+test('number is correct length, is set to 0 didgits', () => {
+    expect(numberLengthIsValid(0, 0, 11)).toBe(true);
+})
+
+test('number is correct length, is set to 11 didgits', () => {
+    expect(numberLengthIsValid(11, 0, 11)).toBe(true);
+})
+
+test('number is over maximum length, is set to 12 didgits', () => {
+    expect(numberLengthIsValid(12, 0, 11)).toBe(true);
+})
+
