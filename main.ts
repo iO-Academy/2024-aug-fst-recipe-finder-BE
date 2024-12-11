@@ -5,6 +5,7 @@ import { addRecipe } from './src/Controllers/addRecipeController';
 import { getAllUserRecipes } from './src/Controllers/getAllUserRecipesController';
 import { getRecipeById } from './src/Controllers/getRecipeByIdController';
 import { getAllIngredients } from './src/Controllers/getAllIngredientsController';
+import { getSingleIngredient } from './src/Controllers/getSingleIngredientController';
 
 const app = express();
 const port = 3002;
