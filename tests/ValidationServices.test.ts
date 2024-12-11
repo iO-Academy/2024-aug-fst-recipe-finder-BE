@@ -68,7 +68,3 @@ test('string is one under the maximum length', () => {
 test('string is one over the maximum length', () => {
     expect(stringLengthIsValid('helpme', 1, 4)).toBe(false);
 })
-
-test('string is one over maximum length, is set to 11 characters', () => {
-    expect(stringLengthIsValid('loooooooool', 1, 10)).toBe(false);
-})
