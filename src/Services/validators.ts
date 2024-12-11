@@ -32,3 +32,8 @@ export async function ingredientIdExists (db: Connection, id: number): Promise<b
   const ingredientidExists = await db.query("SELECT 1 FROM `ingredients` WHERE `id` = ? LIMIT 1;", [ id ])
   return ingredientidExists.length > 0 ? true : false
 }
+
+export async function recipeIdExists (db: Connection, id: number): Promise<boolean> {
+  const recipeIdExists = await db.query("SELECT 1 FROM `recipes` WHERE `id` = ? LIMIT 1;", [ id ])
+  return recipeIdExists.length > 0 ? true : false
+}
