@@ -22,50 +22,40 @@ export async function getRecipeById(
     const userId: number = Number(req.params.userId);
     const recipeId: number = Number(req.params.recipeId);
 
-    if(!isIdValid(userId)) {
+    if(!isIdValid(userId) || !(await userIdExists(db, userId))) {
       res.status(400).json({
-        message: "Invalid id",
+        message: "Invalid user id",
       });
       return
     }
 
-    if(!isIdValid(recipeId)) {
+    if(!isIdValid(recipeId) || !(await recipeIdExists(db, recipeId))) {
       res.status(400).json({
-        message: "Invalid id",
+        message: "Invalid recipe id",
       });
       return
     }
 
-    if (
-      (await userIdExists(db, userId)) &&
-      (await recipeIdExists(db, recipeId))
-    ) {
-      let recipe: Recipe = await db.query(
-        "SELECT `id`, `name`, `instructions`, `prep_time`, `cook_time` FROM `recipes` WHERE `id` = ?",
-        [recipeId]
-      );
-      recipe = recipe[0]
+    let recipe: Recipe = await db.query(
+      "SELECT `id`, `name`, `instructions`, `prep_time`, `cook_time` FROM `recipes` WHERE `id` = ?",
+      [recipeId]
+    );
+    recipe = recipe[0]
 
-      const ingredients: [Ingredient] = await db.query(`
-        SELECT ingredients.id, ingredients.name
-        FROM ingredients
-        JOIN recipes_ingredients
-        ON ingredients.id = recipes_ingredients.ingredient_id
-        WHERE recipes_ingredients.recipe_id = 1;
-      `);
-      recipe.ingredients = ingredients
+    const ingredients: [Ingredient] = await db.query(`
+      SELECT ingredients.id, ingredients.name
+      FROM ingredients
+      JOIN recipes_ingredients
+      ON ingredients.id = recipes_ingredients.ingredient_id
+      WHERE recipes_ingredients.recipe_id = 1;
+    `);
+    recipe.ingredients = ingredients
 
+    res.status(200).json({
+      message: "Successfully retrieved recipe",
+      data: recipe
+    });
 
-      res.status(200).json({
-        message: "Successfully retrieved recipe",
-        data: recipe
-      });
-    } else {
-      res.status(400).json({
-        message: "Invalid id",
-        data: [],
-      });
-    }
   } catch {
     res.status(500).json({
       message: "Unexpected error",

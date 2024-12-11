@@ -11,6 +11,7 @@ export async function getAllUserRecipes(req: Request, res: Response): Promise<vo
     if(!isIdValid(userId)) {
       res.status(400).json({
         message: "Invalid user id",
+        data: []
       });
       return
     }
