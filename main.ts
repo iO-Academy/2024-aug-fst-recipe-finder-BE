@@ -15,6 +15,7 @@ app.use(express.json());
 app.post("/users", getUser)
 app.post("/users/:userId/recipes", addRecipe)
 app.get('/users/:userId/ingredients', getAllIngredients)
+app.get('/users/:userId/ingredients/:ingredientId', getSingleIngredient)
 app.get('/users/:userId/recipes', getAllUserRecipes)
 app.get('/users/:userId/recipes/:recipeId', getRecipeById)
 
