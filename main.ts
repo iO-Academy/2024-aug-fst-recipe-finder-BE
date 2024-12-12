@@ -6,6 +6,7 @@ import { getAllUserRecipes } from './src/Controllers/getAllUserRecipesController
 import { getRecipeById } from './src/Controllers/getRecipeByIdController';
 import { getAllIngredients } from './src/Controllers/getAllIngredientsController';
 import { getSingleIngredient } from './src/Controllers/getSingleIngredientController';
+import { addIngredient } from './src/Controllers/addIngredientController';
 
 const app = express();
 const port = 3002;
@@ -19,5 +20,6 @@ app.get('/users/:userId/ingredients', getAllIngredients)
 app.get('/users/:userId/ingredients/:ingredientId', getSingleIngredient)
 app.get('/users/:userId/recipes', getAllUserRecipes)
 app.get('/users/:userId/recipes/:recipeId', getRecipeById)
+app.post('/users/:userId/ingredient', addIngredient)
 
 app.listen(port);
