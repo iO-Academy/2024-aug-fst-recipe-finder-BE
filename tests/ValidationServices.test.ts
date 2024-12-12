@@ -3,6 +3,7 @@ import {
   stringLengthIsValid,
   isEmail,
   numberLengthIsValid,
+  isIdValid,
 } from "../src/Services/validators";
 
 describe("Email is valid Tests", () => {
