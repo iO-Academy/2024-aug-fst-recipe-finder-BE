@@ -15,6 +15,6 @@ app.post("/users", getUser)
 app.post("/users/:userId/recipes", addRecipe)
 app.get('/users/:userId/recipes', getAllUserRecipes)
 app.get('/users/:userId/recipes/:recipeId', getRecipeById)
-app.post('/users/:userId/ingredient', add)
+// app.post('/users/:userId/ingredient', add)
 
 app.listen(port);
