@@ -1,12 +1,20 @@
 import { Request, Response } from "express";
 import getDatabase from "../Services/databaseConnector";
-import { userIdExists } from "../Services/validators";
+import { isIdValid, userIdExists } from "../Services/validators";
 import { Connection } from "promise-mysql";
 
 export async function getAllUserRecipes(req: Request, res: Response): Promise<void> {
   try {
     const db: Connection = await getDatabase();
     const userId: number = Number(req.params.userId);
+
+    if(!isIdValid(userId)) {
+      res.status(400).json({
+        message: "Invalid user id",
+        data: []
+      });
+      return
+    }
 
     if (await userIdExists(db, userId)) {
       const recipes: [{id: number, name: string, duration: number}] = await db.query(

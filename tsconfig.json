@@ -1,11 +1,10 @@
 {
     "files": [
-        "main.ts"
+        "main.ts",
+        "config.ts"
     ],
     "include": [
         "./src/**/*.ts",
-        "src/services/EmailValidator.ts",
-        "src/services/IsStringValidator.ts"
     ],
     "compilerOptions": {
         "target": "ES6",
