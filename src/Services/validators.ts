@@ -65,6 +65,6 @@ export async function recipeIdExists(
   return recipeIdExists.length > 0 ? true : false;
 }
 
-export function numberIsLessThanMaxAllowed(value: number) {
-  return value > 0 && value < 4294967295;
+export function numberInRange(value: number, min: number = 1, max: number = 4294967295) {
+  return value >= min && value <= max;
 }
