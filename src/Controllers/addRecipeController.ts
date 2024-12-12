@@ -15,14 +15,7 @@ export async function addRecipe(req: Request, res: Response) {
     const db: Connection = await getDatabase();
     const userId: number = Number(req.params.userId);
 
-    if(!isIdValid(userId)) {
-      res.status(400).json({
-        message: "Invalid user id",
-      });
-      return
-    }
-
-    if(!(await userIdExists(db, userId))) {
+    if(!isIdValid(userId) || !(await userIdExists(db, userId))) {
       res.status(400).json({
         message: "Invalid user id",
       });
@@ -31,7 +24,7 @@ export async function addRecipe(req: Request, res: Response) {
 
     let validIngredients: number[] = [];
     for (let ingredient of req.body.ingredients) {
-      if (await ingredientIdExists(db, ingredient)) {
+      if (isIdValid(ingredient) && (await ingredientIdExists(db, ingredient))) {
         validIngredients.push(ingredient)
       }
     }
