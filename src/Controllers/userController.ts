@@ -1,12 +1,11 @@
 import { Request, Response } from "express";
-import getDatabase from "../services/databaseConnector";
-import { isEmail } from "../services/validators";
+import getDatabase from "../Services/databaseConnector";
+import { isEmail } from "../Services/validators";
 
-const getUser = async (req: Request, res: Response) => {
-  const db = await getDatabase();
-
+export async function getUser (req: Request, res: Response) {
   try {
-    let email;
+    const db = await getDatabase();
+    let email: string;
     if (isEmail(req.body.email)) {
       email = req.body.email;
     } else {
@@ -16,7 +15,7 @@ const getUser = async (req: Request, res: Response) => {
       return;
     }
 
-    const existingEmailId = await db.query(
+    const existingEmailId: [{id: number}] = await db.query(
       "SELECT `id` FROM `users` WHERE `email` = ?",
       [email]
     );
@@ -45,5 +44,3 @@ const getUser = async (req: Request, res: Response) => {
     });
   }
 };
-
-export default getUser;
