@@ -3,7 +3,7 @@ import getDatabase from "../Services/databaseConnector";
 import {
   ingredientIdExists,
   isIdValid,
-  numberIsLessThanMaxAllowed,
+  numberInRange,
   stringLengthIsValid,
   userIdExists,
 } from "../Services/validators";
@@ -30,8 +30,8 @@ export async function addRecipe(req: Request, res: Response) {
     if (
       !stringLengthIsValid(req.body.name, 1, 254) ||
       !stringLengthIsValid(req.body.instructions, 1, 65534) ||
-      !numberIsLessThanMaxAllowed(req.body.prep_time) ||
-      !numberIsLessThanMaxAllowed(req.body.cook_time) ||
+      !numberInRange(req.body.prep_time) ||
+      !numberInRange(req.body.cook_time) ||
       validIngredients.length < req.body.ingredients.length
     ) {
       res.status(400).json({
