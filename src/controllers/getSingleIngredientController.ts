@@ -12,20 +12,22 @@ export async function getSingleIngredient(
     const userId: number = Number(req.params.userId);
     const ingredientId: number = Number(req.params.ingredientId);
 
-    if (!userIdExists (db, userId)) {
+      if (!(await userIdExists (db, userId))) {
       res.status(400).json({
         message: "Invalid user id",
         data: [],
       });
-      return;
+      return
     }
-    if (!ingredientIdExists(db, ingredientId)) {
+    
+    if (!(await ingredientIdExists(db, ingredientId))) {
       res.status(400).json({
         message: "Invalid ingredient id",
         data: [],
       });
       return;
     }
+    
     const ingredient: [{ id: number; name: string }] = await db.query(
       "SELECT `id`, `name` FROM `ingredients` WHERE `user_id` = ? AND `id` = ?",
       [userId, ingredientId]
