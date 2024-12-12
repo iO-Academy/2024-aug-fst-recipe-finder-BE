@@ -1,4 +1,4 @@
-import { Connection } from "promise-mysql";
+import type { Connection } from "promise-mysql";
 
 export function stringLengthIsValid(
   string: string,
@@ -17,7 +17,7 @@ export function numberLengthIsValid(
   minLength: number,
   maxLength: number
 ): boolean {
-  return number.toString().length < minLength || number.toString().length > maxLength ? false : true 
+  return stringLengthIsValid(number.toString(), minLength, maxLength)
 }
 
 export function isEmail(email: string): boolean {
@@ -29,6 +29,15 @@ export function isEmail(email: string): boolean {
     }
   }
   return false;
+}
+
+export function isIdValid(id: number) {
+  const input = Number(id)
+  return (
+    !isNaN(input) ||
+    isFinite(input) ||
+    input > 0
+  ) 
 }
 
 export async function userIdExists (db: Connection, id: number): Promise<boolean> {
