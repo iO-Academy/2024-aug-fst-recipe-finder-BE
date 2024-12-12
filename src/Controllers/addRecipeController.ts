@@ -3,7 +3,7 @@ import getDatabase from "../Services/databaseConnector";
 import {
   ingredientIdExists,
   isIdValid,
-  numberLengthIsValid,
+  numberInRange,
   stringLengthIsValid,
   userIdExists,
 } from "../Services/validators";
@@ -12,7 +12,7 @@ import { Connection } from "promise-mysql";
 export async function addRecipe(req: Request, res: Response) {
   try {
     const db: Connection = await getDatabase();
-    const userId: number = Number(req.params.userId);
+    const userId: number = Math.floor(Number(req.params.userId));
 
     if (!isIdValid(userId) || !(await userIdExists(db, userId))) {
       res.status(400).json({
@@ -30,8 +30,8 @@ export async function addRecipe(req: Request, res: Response) {
     if (
       !stringLengthIsValid(req.body.name, 1, 254) ||
       !stringLengthIsValid(req.body.instructions, 1, 65534) ||
-      !numberLengthIsValid(req.body.prep_time, 1, 10) ||
-      !numberLengthIsValid(req.body.cook_time, 1, 10) ||
+      !numberInRange(req.body.prep_time, 0) ||
+      !numberInRange(req.body.cook_time, 0) ||
       validIngredients.length < req.body.ingredients.length
     ) {
       res.status(400).json({

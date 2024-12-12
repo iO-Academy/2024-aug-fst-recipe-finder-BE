@@ -26,8 +26,8 @@ export async function getRecipeById(
 ): Promise<void> {
   try {
     const db: Connection = await getDatabase();
-    const userId: number = Number(req.params.userId);
-    const recipeId: number = Number(req.params.recipeId);
+    const userId: number = Math.floor(Number(req.params.userId));
+    const recipeId: number = Math.floor(Number(req.params.recipeId));
 
     if (!isIdValid(userId) || !(await userIdExists(db, userId))) {
       res.status(400).json({

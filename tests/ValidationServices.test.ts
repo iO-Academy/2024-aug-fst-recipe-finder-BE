@@ -2,7 +2,7 @@ import { describe, expect, test } from "@jest/globals";
 import {
   stringLengthIsValid,
   isEmail,
-  numberLengthIsValid,
+  isIdValid,
 } from "../src/Services/validators";
 
 describe("Email is valid Tests", () => {
@@ -92,16 +92,25 @@ describe("String is valid Tests", () => {
   });
 });
 
-describe("NumberLengthIsvalid Tests", () => {
-  test("number is a correct length", () => {
-    expect(numberLengthIsValid(12345678910, 1, 255)).toBe(true);
+describe("isIdValid Tests", () => {
+  
+  test("is ID a valid number", () => {
+    expect(isIdValid(1)).toBe(true);
   });
 
-  test("number under the minimum length is fails", () => {
-    expect(numberLengthIsValid(1, 2, 255)).toBe(false);
+  test("is ID a valid number", () => {
+    expect(isIdValid(0)).toBe(false);
   });
 
-  test("number is over maximum length, is set to 11 characters", () => {
-    expect(numberLengthIsValid(12345678910, 1, 10)).toBe(false);
+  test("is ID a valid number 2 digits", () => {
+    expect(isIdValid(10)).toBe(true);
+  });
+
+  test("is ID a valid number 10 digits", () => {
+    expect(isIdValid(9999999999)).toBe(true);
+  });
+
+  test("is ID a valid number 11 digits", () => {
+    expect(isIdValid(10000000000)).toBe(false);
   });
 });

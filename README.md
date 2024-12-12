@@ -332,7 +332,7 @@
 
 - **URL**
 
-  /users/:userId/ingredient
+  /users/:userId/ingredients
 
 - **Method:**
 
@@ -344,7 +344,7 @@
 
   **Example:**
 
-  `/users/1/ingredient`
+  `/users/1/ingredients`
 
   **Body Data**
 
