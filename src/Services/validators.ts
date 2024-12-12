@@ -28,7 +28,7 @@ export function isIdValid(id: number) {
   return (
     (!isNaN(input) || isFinite(input)) &&
     input > 0 &&
-    stringLengthIsValid(input.toString(), 1, 10)
+    numberIsLessThanMaxAllowed(input)
   );
 }
 

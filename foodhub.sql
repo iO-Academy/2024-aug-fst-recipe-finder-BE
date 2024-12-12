@@ -1,13 +1,13 @@
 # ************************************************************
 # Sequel Ace SQL dump
-# Version 20070
+# Version 20077
 #
 # https://sequel-ace.com/
 # https://github.com/Sequel-Ace/Sequel-Ace
 #
 # Host: localhost (MySQL 11.5.2-MariaDB-ubu2404)
 # Database: foodhub
-# Generation Time: 2024-12-09 16:25:19 +0000
+# Generation Time: 2024-12-12 14:16:55 +0000
 # ************************************************************
 
 
@@ -28,7 +28,7 @@ DROP TABLE IF EXISTS `ingredients`;
 CREATE TABLE `ingredients` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `user_id` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
@@ -44,7 +44,8 @@ VALUES
 	(5,'cake',1),
 	(6,'cucumber',1),
 	(7,'camomile',1),
-	(8,'cilantro',1);
+	(8,'cilantro',1),
+	(9,'Chalk',1);
 
 /*!40000 ALTER TABLE `ingredients` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -57,11 +58,11 @@ DROP TABLE IF EXISTS `recipes`;
 
 CREATE TABLE `recipes` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
+  `user_id` int(11) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `instructions` text NOT NULL,
-  `prep_time` int(11) NOT NULL,
-  `cook_time` int(11) NOT NULL,
+  `prep_time` int(11) unsigned NOT NULL,
+  `cook_time` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
