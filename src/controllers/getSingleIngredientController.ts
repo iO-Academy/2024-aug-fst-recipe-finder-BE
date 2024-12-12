@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import getDatabase from "../Services/databaseConnector";
-import { ingredientIdExists, userIdExists } from "../Services/validators";
+import { ingredientIdExists, isIdValid, userIdExists } from "../Services/validators";
 import { Connection } from "promise-mysql";
 
 export async function getSingleIngredient(
@@ -9,10 +9,10 @@ export async function getSingleIngredient(
 ): Promise<void> {
   try {
     const db: Connection = await getDatabase();
-    const userId: number = Number(req.params.userId);
-    const ingredientId: number = Number(req.params.ingredientId);
+    const userId: number = Math.floor(Number(req.params.userId));
+    const ingredientId: number = Math.floor(Number(req.params.ingredientId));
 
-      if (!(await userIdExists (db, userId))) {
+      if (!isIdValid(userId) || !(await userIdExists (db, userId))) {
       res.status(400).json({
         message: "Invalid user id",
         data: [],
@@ -20,7 +20,7 @@ export async function getSingleIngredient(
       return
     }
     
-    if (!(await ingredientIdExists(db, ingredientId))) {
+    if (!isIdValid(userId) || !(await ingredientIdExists(db, ingredientId))) {
       res.status(400).json({
         message: "Invalid ingredient id",
         data: [],

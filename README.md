@@ -332,7 +332,7 @@
 
 - **URL**
 
-  /users/:userId/ingredient
+  /users/:userId/ingredients
 
 - **Method:**
 

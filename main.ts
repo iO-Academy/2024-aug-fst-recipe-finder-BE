@@ -20,6 +20,6 @@ app.get('/users/:userId/ingredients', getAllIngredients)
 app.get('/users/:userId/ingredients/:ingredientId', getSingleIngredient)
 app.get('/users/:userId/recipes', getAllUserRecipes)
 app.get('/users/:userId/recipes/:recipeId', getRecipeById)
-app.post('/users/:userId/ingredient', addIngredient)
+app.post('/users/:userId/ingredients', addIngredient)
 
 app.listen(port);

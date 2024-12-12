@@ -6,7 +6,7 @@ import { Connection } from "promise-mysql";
 export async function getAllIngredients(req: Request, res: Response): Promise<void> {
   try {
     const db: Connection = await getDatabase();
-    const userId: number = Number(req.params.userId);
+    const userId: number = Math.floor(Number(req.params.userId));
 
     if (await userIdExists(db, userId)) {
       const ingredients: [{id: number, name: string}] = await db.query(

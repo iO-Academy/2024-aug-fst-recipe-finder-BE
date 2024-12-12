@@ -10,7 +10,7 @@ import { Connection } from "promise-mysql";
 export async function addIngredient(req: Request, res: Response) {
   try {
     const db: Connection = await getDatabase();
-    const userId: number = Number(req.params.userId);
+    const userId: number = Math.floor(Number(req.params.userId));
 
     if (!isIdValid(userId) || !(await userIdExists(db, userId))) {
       res.status(400).json({
@@ -27,8 +27,8 @@ export async function addIngredient(req: Request, res: Response) {
     }
 
     const results = await db.query(
-      "INSERT INTO `ingredients` ( name ) VALUES (?)",
-      [req.body.name]
+      "INSERT INTO `ingredients` ( name , user_id ) VALUES (?, ?)",
+      [req.body.name, userId]
     );
     const newIngredientId = results.insertId;
 

@@ -4,7 +4,7 @@ export function stringLengthIsValid(
   string: string,
   minLength: number,
   maxLength: number
-) {
+): boolean {
   let length = string.length;
 
   if (length < minLength || length > maxLength) {
@@ -24,7 +24,7 @@ export function isEmail(email: string): boolean {
 }
 
 export function isIdValid(id: number) {
-  const input = Math.floor(Number(id));
+  const input = Number(id);
   return (
     (!isNaN(input) || isFinite(input)) &&
     input > 0 &&
@@ -63,4 +63,8 @@ export async function recipeIdExists(
     [id]
   );
   return recipeIdExists.length > 0 ? true : false;
+}
+
+export function numberIsLessThanMaxAllowed(value: number) {
+  return value > 0 && value < 4294967295;
 }
