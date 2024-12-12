@@ -30,8 +30,8 @@ export async function addRecipe(req: Request, res: Response) {
     if (
       !stringLengthIsValid(req.body.name, 1, 254) ||
       !stringLengthIsValid(req.body.instructions, 1, 65534) ||
-      !numberInRange(req.body.prep_time) ||
-      !numberInRange(req.body.cook_time) ||
+      !numberInRange(req.body.prep_time, 0) ||
+      !numberInRange(req.body.cook_time, 0) ||
       validIngredients.length < req.body.ingredients.length
     ) {
       res.status(400).json({
