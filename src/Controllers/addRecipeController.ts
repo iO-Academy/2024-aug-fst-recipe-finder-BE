@@ -47,15 +47,14 @@ export async function addRecipe(req: Request, res: Response) {
       prep_time: req.body.prep_time,
       cook_time: req.body.cook_time,
     });
-    
+
     const newRecipeId = results.insertId;
 
-    if (req.body.ingredients.length > 0) {
-      
-      let inputs = validIngredients.map((ingredient) => {
-        return [newRecipeId, ingredient];
-      });
+    let inputs = validIngredients.map((ingredient) => {
+      return [newRecipeId, ingredient];
+    });
 
+    if (inputs.length > 0) {
       await db.query(
         "INSERT INTO `recipes_ingredients` (recipe_id, ingredient_id) VALUES ?",
         [inputs]
