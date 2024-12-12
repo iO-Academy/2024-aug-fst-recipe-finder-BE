@@ -27,8 +27,7 @@ export function isIdValid(id: number) {
   const input = Number(id);
   return (
     (!isNaN(input) || isFinite(input)) &&
-    input > 0 &&
-    numberIsLessThanMaxAllowed(input)
+    numberInRange(input, 1, 4294967295)
   );
 }
 
