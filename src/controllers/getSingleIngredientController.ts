@@ -19,7 +19,7 @@ export async function getSingleIngredient(
       });
       return;
     }
-    if (!ingredientIdExists(db, userId)) {
+    if (!ingredientIdExists(db, ingredientId)) {
       res.status(400).json({
         message: "Invalid ingredient id",
         data: [],
